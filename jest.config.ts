@@ -5,12 +5,17 @@ const config: Config.InitialOptions = {
   transform: {
     "^.+\\.tsx?$": "ts-jest",
   },
-  setupFilesAfterEnv: ["<rootDir>/src/tests/setup.ts"],
+  setupFilesAfterEnv: [
+    "<rootDir>/src/setup/tests/setup.ts",
+    "jest-styled-components",
+  ],
   testEnvironment: "jsdom",
+  moduleDirectories: ["node_modules", "<rootDir>"],
   moduleNameMapper: {
-    "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
-      "<rootDir>/mocks/fileMock.js",
-    "\\.(css|less)$": "<rootDir>/mocks/fileMock.js",
+    "^~common/assets/svgs/(.*)$": "<rootDir>/src/setup/mocks/fileMock.ts",
+    "\\.(png|jpg|jpeg|gif|webp|svg)$": "<rootDir>/src/setup/mocks/fileMock.ts",
+    "^~common/(.*)$": "<rootDir>/src/common/$1",
   },
+  transformIgnorePatterns: ["/node_modules/", "^.+\\.svg$"],
 };
 export default config;
