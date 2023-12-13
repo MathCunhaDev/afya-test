@@ -9,7 +9,7 @@ export const Card = styled.section`
   padding: 1.25rem;
   justify-content: center;
   align-items: center;
-  gap: 3.5625rem;
+  gap: 2.6rem;
   border-radius: 0.9375rem;
   border: 1px solid ${theme.color.primaryBlue};
   background: ${theme.color.white};
@@ -31,6 +31,8 @@ export const Price = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  white-space: nowrap;
+  margin: 4px 0;
 `;
 
 export const Installments = styled.p`
@@ -44,8 +46,21 @@ export const Installments = styled.p`
 `;
 
 export const Discount = styled.span`
+  width: 2.5rem;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 0.5625rem;
   background: ${theme.color.secondaryOrange};
+  font-family: ${theme.font.primary};
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.0125rem;
+  color: ${theme.color.white};
+  margin-left: 12px;
 `;
 
 export const RadioButton = styled(Radio)``;
