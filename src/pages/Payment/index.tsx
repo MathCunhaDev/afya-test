@@ -1,5 +1,6 @@
 import { Flex } from "antd";
-import { IPaymentData, usePayment } from "~hooks/usePayment";
+import { usePayment } from "~hooks/usePayment";
+import { IPaymentData } from "~models/IPayment";
 import * as Molecules from "~/components/Molecules";
 import * as Atoms from "~/components/Atoms";
 
