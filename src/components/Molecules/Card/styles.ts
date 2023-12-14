@@ -7,9 +7,8 @@ export const Card = styled.section`
   width: 20.625rem;
   height: 6.25rem;
   padding: 1.25rem;
-  justify-content: center;
   align-items: center;
-  gap: 2.6rem;
+  justify-content: space-between;
   border-radius: 0.9375rem;
   border: 1px solid ${theme.color.primaryBlue};
   background: ${theme.color.white};
@@ -63,6 +62,41 @@ export const Discount = styled.span`
   margin-left: 12px;
 `;
 
-export const RadioButton = styled(Radio)``;
+export const RadioButton = styled(Radio)`
+  margin-inline-end: 0;
+
+  &:hover {
+    border-width: 2px;
+    border-color: ${theme.color.primaryBlue};
+
+    .ant-radio {
+      &:after {
+        border-color: ${theme.color.primaryBlue};
+      }
+    }
+
+    .ant-radio-inner {
+      border-color: ${theme.color.primaryBlue};
+    }
+  }
+
+  .ant-radio-inner {
+    width: 20px;
+    height: 20px;
+    border-width: 2px;
+    border-color: ${theme.color.gray1};
+  }
+
+  .ant-radio-checked {
+    .ant-radio-inner {
+      border-color: ${theme.color.gray3};
+      background-color: ${theme.color.white};
+
+      &:after {
+        background-color: ${theme.color.primaryBlue};
+      }
+    }
+  }
+`;
 
 export const Wrapper = styled(Flex)``;
