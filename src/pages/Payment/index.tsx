@@ -5,14 +5,14 @@ import * as Molecules from "~/components/Molecules";
 import * as Atoms from "~/components/Atoms";
 
 export const Payment = () => {
-  const { paymentData, paymentState, paymentDispatch } = usePayment();
+  const { paymentData, paymentState, paymentDispatch, options } = usePayment();
 
   return (
     <>
       <Molecules.Header />
       <Atoms.Container>
         <Flex justify="space-between">
-          <Molecules.PaymentForm key="paymentForm" />
+          <Molecules.PaymentForm key="paymentForm" options={options} />
           <Flex vertical={true} gap={"12px"}>
             {paymentData.map((payment: IPaymentData) => (
               <Molecules.Card

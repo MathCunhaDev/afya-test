@@ -29,4 +29,9 @@ interface IPayment {
   acceptsCoupon: boolean;
 }
 
-export type { IPaymentData, IPayment };
+type IOption = {
+  value: string;
+  label: string;
+};
+
+export type { IPaymentData, IPayment, IOption };

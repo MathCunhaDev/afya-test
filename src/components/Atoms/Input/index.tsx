@@ -1,7 +1,7 @@
 import * as S from "./styles.ts";
 
 interface IInput {
-  id?: string;
+  id: string;
   label: string;
   placeholder: string;
 }

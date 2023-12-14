@@ -3,10 +3,21 @@ import { formatPrice } from "~common/utils/formatPrice";
 import { getPaymentData } from "~store/services/apiService";
 import * as Props from "~models/IPayment";
 
-const paymentReducer = (state: any, action: any) => (state = action);
-
 export const usePayment = () => {
+  const paymentReducer = (state: any, action: any) => {
+    const newOptions: Props.IOption[] = Array.from({
+      length: action.installments,
+    }).map((_, index) => ({
+      value: (index + 1).toString(),
+      label: (index + 1).toString(),
+    }));
+
+    setOptions(newOptions);
+
+    return (state = action);
+  };
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [options, setOptions] = useState<Props.IOption[]>([]);
   const [paymentData, setPaymentData] = useState<Props.IPaymentData[]>([]);
   const [paymentState, paymentDispatch] = useReducer(paymentReducer, {
     id: 0,
@@ -17,7 +28,16 @@ export const usePayment = () => {
     try {
       const { data } = await getPaymentData();
 
-      const dataFormatted = data.map((payment: Props.IPayment) => ({
+      const sortedData = data.sort(
+        (a: Props.IPayment, b: Props.IPayment) => b.order - a.order
+      );
+
+      paymentDispatch({
+        id: sortedData[0].id,
+        installments: sortedData[0].installments,
+      });
+
+      const formattedData = sortedData.map((payment: Props.IPayment) => ({
         id: payment.id,
         title: payment.title,
         fullPrice: formatPrice(payment.fullPrice),
@@ -30,7 +50,7 @@ export const usePayment = () => {
         installmentType: payment.description,
       }));
 
-      setPaymentData(dataFormatted);
+      setPaymentData(formattedData);
     } catch (error) {
       console.log("An error occurred while loading:", error);
     } finally {
@@ -42,5 +62,5 @@ export const usePayment = () => {
     if (paymentData.length === 0) loadData();
   }, []);
 
-  return { isLoading, paymentData, paymentState, paymentDispatch };
+  return { isLoading, paymentData, paymentState, paymentDispatch, options };
 };
