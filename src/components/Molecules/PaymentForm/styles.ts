@@ -19,4 +19,8 @@ export const Form = styled.form`
     width: 140px;
     grid-column: span 1;
   }
+
+  @media (max-width: 780px) {
+    margin-top: 30px;
+  }
 `;

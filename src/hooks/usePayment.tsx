@@ -4,7 +4,7 @@ import { getPaymentData } from "~store/services/apiService";
 import * as Props from "~models/IPayment";
 
 export const usePayment = () => {
-  const paymentReducer = (state: any, action: any) => {
+  const paymentReducer = (_state: any, action: any) => {
     const newOptions: Props.IOption[] = Array.from({
       length: action.installments,
     }).map((_, index) => ({
@@ -14,8 +14,9 @@ export const usePayment = () => {
 
     setOptions(newOptions);
 
-    return (state = action);
+    return (_state = action);
   };
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [options, setOptions] = useState<Props.IOption[]>([]);
   const [paymentData, setPaymentData] = useState<Props.IPaymentData[]>([]);
@@ -62,5 +63,11 @@ export const usePayment = () => {
     if (paymentData.length === 0) loadData();
   }, []);
 
-  return { isLoading, paymentData, paymentState, paymentDispatch, options };
+  return {
+    isLoading,
+    paymentData,
+    paymentState,
+    paymentDispatch,
+    options,
+  };
 };
