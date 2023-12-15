@@ -1,4 +1,5 @@
 import { IOption } from "~models/IPayment";
+import { ChangeEvent } from "react";
 import * as S from "./styles";
 
 interface ISelect {
@@ -6,9 +7,18 @@ interface ISelect {
   options: IOption[];
   placeholder: string;
   label: string;
+  error: string | undefined;
+  onChange: (value: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export const Select = ({ id, options, placeholder, label }: ISelect) => {
+export const Select = ({
+  id,
+  options,
+  placeholder,
+  label,
+  error,
+  onChange,
+}: ISelect) => {
   return (
     <S.Column>
       <S.Label htmlFor={id}>{label}</S.Label>
@@ -16,8 +26,10 @@ export const Select = ({ id, options, placeholder, label }: ISelect) => {
         id={id}
         placeholder={placeholder}
         options={options}
+        onChange={onChange}
         data-testid="select"
       />
+      <S.Error>{error}</S.Error>
     </S.Column>
   );
 };

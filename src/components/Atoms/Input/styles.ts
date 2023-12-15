@@ -4,7 +4,7 @@ import { Input } from "antd";
 
 export const Column = styled.div`
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
 `;
 
 export const StyledInput = styled(Input)`
@@ -41,4 +41,15 @@ export const Label = styled.label`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+`;
+
+export const Error = styled.span`
+  color: red;
+  font-family: ${theme.font.primary};
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  display: block;
+  margin-top: px;
 `;

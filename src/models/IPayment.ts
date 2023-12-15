@@ -34,4 +34,30 @@ type IOption = {
   label: string;
 };
 
-export type { IPaymentData, IPayment, IOption };
+interface IPaymentFormItem {
+  id: string;
+  label: string;
+  placeholder: string;
+}
+
+interface IPaymentForm {
+  options: IOption[];
+}
+
+interface IPaymentSubmitObject {
+  cardNumber: string;
+  cpf: string;
+  cvv: string;
+  installments: string;
+  name: string;
+  validity: string;
+}
+
+export type {
+  IPaymentData,
+  IPayment,
+  IOption,
+  IPaymentFormItem,
+  IPaymentForm,
+  IPaymentSubmitObject,
+};

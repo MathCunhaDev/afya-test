@@ -1,79 +1,93 @@
-import { Flex, Form } from "antd";
-import { IOption } from "~models/IPayment";
+import { ChangeEvent } from "react";
+import { useForm, Controller, FieldValues } from "react-hook-form";
+import { paymentFormItems } from "~constants/paymentFormItems";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { validations } from "./validations";
 import * as Atoms from "~components/Atoms";
+import * as Props from "~models/IPayment";
+import * as Utils from "~common/utils/";
 import * as S from "./styles";
 
-interface IPaymentForm {
-  options: IOption[];
-}
+export function PaymentForm({ options }: Props.IPaymentForm) {
+  const { control, handleSubmit, setValue, formState } = useForm({
+    resolver: zodResolver(validations),
+  });
 
-export const PaymentForm = ({ options }: IPaymentForm) => {
+  const handleSubscription = (data: FieldValues) => {
+    console.log("aqui 7", data);
+    if (formState.isValid) {
+      console.log(data);
+    } else {
+      console.log("Formulário inválido. Corrija os erros antes de enviar.");
+    }
+  };
+
+  const handleChange = (value: string, name: string) => {
+    switch (name) {
+      case "cardNumber":
+        setValue(name, Utils.formatCreditCard(value));
+        break;
+      case "validity":
+        setValue(name, Utils.formatValidate(value));
+        break;
+      case "cvv":
+        setValue(name, Utils.formatCreditCard(value));
+        break;
+      case "cpf":
+        setValue(name, Utils.formatCpf(value));
+        break;
+      default:
+        setValue(name, value);
+        break;
+    }
+  };
+
   return (
     <S.Wrapper>
-      <Form>
-        <Form.Item>
-          <Atoms.Input
-            id="cardNumber"
-            key="cardNumber"
-            label="Número do cartão"
-            placeholder="0000 0000 0000 0000"
+      <S.Form onSubmit={handleSubmit(handleSubscription)}>
+        {paymentFormItems.map((item: Props.IPaymentFormItem) => (
+          <Controller
+            key={item.id}
+            name={item.id}
+            control={control}
+            render={({ field, fieldState }) => (
+              <Atoms.Input
+                {...field}
+                label={item.label}
+                id={item.id}
+                placeholder={item.placeholder}
+                onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                  field.onChange(event.target.value);
+                  handleChange(event.target.value, item.id);
+                }}
+                error={fieldState.error?.message}
+              />
+            )}
           />
-        </Form.Item>
-        <Flex justify="space-between">
-          <Form.Item>
-            <Atoms.Input
-              id="cardValidity"
-              key="cardValidity"
-              label="Validade"
-              placeholder="MM/AA"
+        ))}
+
+        <Controller
+          key={"installments"}
+          name={"installments"}
+          control={control}
+          render={({ field, fieldState }) => (
+            <Atoms.Select
+              {...field}
+              id="installments"
+              label="Número de parcelas"
+              placeholder="Selecionar"
+              options={options}
+              onChange={(value: any) => {
+                field.onChange(value);
+                handleChange(value, "installments");
+              }}
+              error={fieldState.error?.message}
             />
-          </Form.Item>
-          <Form.Item>
-            <Atoms.Input
-              id="securityNumber"
-              key="securityNumber"
-              label="CVV"
-              placeholder="000"
-            />
-          </Form.Item>
-        </Flex>
-        <Form.Item>
-          <Atoms.Input
-            id="name"
-            key="name"
-            label="Seu nome impresso no cartao"
-            placeholder="Seu nome"
-          />
-        </Form.Item>
-        <Form.Item>
-          <Atoms.Input
-            id="cpf"
-            key="cpf"
-            label="CPF"
-            placeholder="000.000.000-00"
-          />
-        </Form.Item>
-        <Form.Item>
-          <Atoms.Input
-            id="cupon"
-            key="cupon"
-            label="Cupom"
-            placeholder="Insira aqui"
-          />
-        </Form.Item>
-        <Form.Item>
-          <Atoms.Select
-            id="installments"
-            key="installments"
-            label="Número de parcelas"
-            placeholder="Selecionar"
-            options={options}
-          />
-        </Form.Item>
-        <Form.Item>
-          <Atoms.Button>Finalizar pagamento</Atoms.Button>
-        </Form.Item>
-      </Form>
+          )}
+        />
+
+        <Atoms.Button htmlType="submit">Finalizar pagamento</Atoms.Button>
+      </S.Form>
     </S.Wrapper>
   );
-};
+}
