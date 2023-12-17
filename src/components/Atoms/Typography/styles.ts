@@ -7,7 +7,7 @@ const { Title, Text } = Typography;
 export const StyledTitle = styled(Title)<{ size?: string; weight?: string }>`
   color: ${theme.color.gray5};
   font-family: ${theme.font.primary};
-  font-size: ${(props) => (props.size ? props.size : "1rem")};
+  font-size: ${(props) => (props.size ? props.size : "1rem")} !important;
   font-style: normal;
   font-weight: ${(props) => (props.weight ? props.weight : "600")} !important;
   line-height: normal;

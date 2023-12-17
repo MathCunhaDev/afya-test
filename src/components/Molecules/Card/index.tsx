@@ -54,6 +54,7 @@ export const Card = ({
               installmentPrice,
             })
           }
+          data-testid="radioButton"
           checked={paymentType === id ? true : false}
         />
       </S.Wrapper>

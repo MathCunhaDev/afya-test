@@ -15,6 +15,8 @@ const config: Config.InitialOptions = {
     "^~common/assets/svgs/(.*)$": "<rootDir>/src/setup/mocks/fileMock.ts",
     "\\.(png|jpg|jpeg|gif|webp|svg)$": "<rootDir>/src/setup/mocks/fileMock.ts",
     "^~common/(.*)$": "<rootDir>/src/common/$1",
+    "^~components/Atoms(.*)$": "<rootDir>/src/components/Atoms/$1",
+    "^~constants/(.*)$": "<rootDir>/src/constants/$1",
   },
   transformIgnorePatterns: ["/node_modules/", "^.+\\.svg$"],
 };
