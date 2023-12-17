@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { useForm, Controller, FieldValues } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { paymentFormItems } from "~constants/paymentFormItems";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { validations } from "./validations";
@@ -8,19 +8,13 @@ import * as Props from "~models/IPayment";
 import * as Utils from "~common/utils/";
 import * as S from "./styles";
 
-export function PaymentForm({ options }: Props.IPaymentForm) {
-  const { control, handleSubmit, setValue, formState } = useForm({
+export function PaymentForm({
+  options,
+  handleSubscription,
+}: Props.IPaymentForm) {
+  const { control, handleSubmit, setValue } = useForm({
     resolver: zodResolver(validations),
   });
-
-  const handleSubscription = (data: FieldValues) => {
-    console.log("aqui 7", data);
-    if (formState.isValid) {
-      console.log(data);
-    } else {
-      console.log("Formulário inválido. Corrija os erros antes de enviar.");
-    }
-  };
 
   const handleChange = (value: string, name: string) => {
     switch (name) {

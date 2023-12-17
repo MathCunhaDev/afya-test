@@ -15,8 +15,8 @@ export const StyledTitle = styled(Title)<{ size?: string; weight?: string }>`
   margin: 0 !important;
 `;
 
-export const StyledText = styled(Text)<{ size?: string }>`
-  color: ${theme.color.gray5};
+export const StyledText = styled(Text)<{ size?: string; color?: string }>`
+  color: ${(props) => (props.color ? props.color : theme.color.gray5)};
   font-family: ${theme.font.primary};
   font-size: ${(props) => (props.size ? props.size : "1rem")} !important;
   font-style: normal;

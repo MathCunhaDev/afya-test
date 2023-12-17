@@ -1,3 +1,5 @@
+import { FieldValues } from "react-hook-form";
+
 interface IPaymentData {
   id: number;
   title: string;
@@ -42,6 +44,7 @@ interface IPaymentFormItem {
 
 interface IPaymentForm {
   options: IOption[];
+  handleSubscription: (data: FieldValues) => void;
 }
 
 interface IPaymentSubmitObject {
@@ -53,6 +56,24 @@ interface IPaymentSubmitObject {
   validity: string;
 }
 
+interface IPaymentConfirmation {
+  id: string | number;
+  installments: string | number;
+  title: string;
+  cpf: string;
+  price: string;
+  email: string;
+}
+
+interface IPlanSelected {
+  id: string | number;
+  installments: string | number;
+  title: string;
+  installmentType: string;
+  bestPrice: string;
+  installmentPrice: string;
+}
+
 export type {
   IPaymentData,
   IPayment,
@@ -60,4 +81,6 @@ export type {
   IPaymentFormItem,
   IPaymentForm,
   IPaymentSubmitObject,
+  IPaymentConfirmation,
+  IPlanSelected,
 };

@@ -1,9 +1,5 @@
+import { IPlanSelected } from "~models/IPayment";
 import * as S from "./styles";
-
-export type paymentStateType = {
-  id: number;
-  installments: number;
-};
 
 interface ICard {
   id: number;
@@ -15,7 +11,7 @@ interface ICard {
   installmentPrice: string;
   installmentType: string;
   paymentType: number;
-  handleClick: (object: paymentStateType) => void;
+  handleClick: (object: IPlanSelected) => void;
 }
 
 export const Card = ({
@@ -48,7 +44,16 @@ export const Card = ({
       </S.Wrapper>
       <S.Wrapper align="center">
         <S.RadioButton
-          onClick={() => handleClick({ id, installments })}
+          onClick={() =>
+            handleClick({
+              id,
+              installments,
+              title,
+              installmentType,
+              bestPrice,
+              installmentPrice,
+            })
+          }
           checked={paymentType === id ? true : false}
         />
       </S.Wrapper>

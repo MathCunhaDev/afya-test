@@ -4,6 +4,7 @@ import * as S from "./styles";
 interface ITipography {
   level?: 1 | 2 | 5 | 3 | 4 | undefined;
   weight?: string;
+  color?: string;
   size: string;
   children: ReactElement | string;
 }
@@ -16,8 +17,12 @@ export const Title = ({ level, weight, size, children }: ITipography) => {
   );
 };
 
-export const Text = ({ size, children }: ITipography) => {
-  return <S.StyledText size={size}>{children}</S.StyledText>;
+export const Text = ({ size, children, color }: ITipography) => {
+  return (
+    <S.StyledText size={size} color={color}>
+      {children}
+    </S.StyledText>
+  );
 };
 
 export const Pill = ({ size, children }: ITipography) => {
