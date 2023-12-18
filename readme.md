@@ -9,6 +9,7 @@ A lib de UI utilizada é o Ant Design, acredito que ele trabalha muito bem com o
 Axios para todas as requisições.
 Styled Components para estilização.
 Jest, React Testing Library e Cypress para os testes.
+Eslint e Prettier para correção de erros e formatação.
 
 ## Patterns
 
