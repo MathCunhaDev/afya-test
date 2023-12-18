@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { Card } from "./index";
+import { Card } from "./index"; // Assuming your component file is named Card.tsx
 
 const mockCardData = {
   id: 1,
@@ -14,7 +14,7 @@ const mockCardData = {
   handleClick: jest.fn(),
 };
 
-describe("Input component", () => {
+describe("Card component", () => {
   test("renders the Card component with correct data", () => {
     render(<Card {...mockCardData} />);
 
@@ -32,24 +32,11 @@ describe("Input component", () => {
   test("calls handleClick function when RadioButton is clicked", () => {
     const mockHandleClick = jest.fn();
 
-    const mockCardData = {
-      id: 1,
-      title: "Sample Card",
-      fullPrice: "1000,00",
-      bestPrice: "800,00",
-      discount: "20%",
-      installments: 12,
-      installmentPrice: "66,67",
-      installmentType: "mensais",
-      paymentType: 1,
-    };
-
     render(<Card {...mockCardData} handleClick={mockHandleClick} />);
 
     fireEvent.click(screen.getByTestId("radioButton"));
 
     expect(mockHandleClick).toHaveBeenCalledTimes(1);
-
     expect(mockHandleClick).toHaveBeenCalledWith({
       id: mockCardData.id,
       installments: mockCardData.installments,
@@ -58,5 +45,24 @@ describe("Input component", () => {
       bestPrice: mockCardData.bestPrice,
       installmentPrice: mockCardData.installmentPrice,
     });
+  });
+
+  test("RadioButton is checked when paymentType matches id", () => {
+    render(<Card {...mockCardData} />);
+
+    const radioButton = screen.getByTestId("radioButton");
+    expect(radioButton).toBeChecked();
+  });
+
+  test("RadioButton is not checked when paymentType does not match id", () => {
+    const cardDataWithDifferentPaymentType = {
+      ...mockCardData,
+      paymentType: 2,
+    };
+
+    render(<Card {...cardDataWithDifferentPaymentType} />);
+
+    const radioButton = screen.getByTestId("radioButton");
+    expect(radioButton).not.toBeChecked();
   });
 });

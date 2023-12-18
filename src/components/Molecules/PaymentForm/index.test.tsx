@@ -7,15 +7,7 @@ describe("PaymentForm component", () => {
   test("renders PaymentForm correctly", async () => {
     const mockHandleSubscription = jest.fn();
 
-    render(
-      <PaymentForm
-        options={[
-          { value: "1", label: "1" },
-          { value: "2", label: "2" },
-        ]}
-        handleSubscription={mockHandleSubscription}
-      />
-    );
+    render(<PaymentForm handleSubscription={mockHandleSubscription} />);
 
     expect(
       screen.getByLabelText("Número do cartão de crédito")

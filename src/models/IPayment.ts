@@ -43,7 +43,7 @@ interface IPaymentFormItem {
 }
 
 interface IPaymentForm {
-  options: IOption[];
+  options?: IOption[];
   handleSubscription: (data: FieldValues) => void;
 }
 

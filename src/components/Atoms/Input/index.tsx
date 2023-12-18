@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import * as S from "./styles.ts";
 
 interface IInput {
@@ -9,26 +10,22 @@ interface IInput {
   error: any;
 }
 
-export const Input = ({
-  label,
-  placeholder,
-  id,
-  onChange,
-  value,
-  error,
-}: IInput) => {
-  return (
-    <S.Column>
-      <S.Label data-testid="label" htmlFor={id}>
-        {label}
-      </S.Label>
-      <S.StyledInput
-        id={id}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-      />
-      <S.Error>{error}</S.Error>
-    </S.Column>
-  );
-};
+export const Input = forwardRef<any, IInput>(
+  ({ label, placeholder, id, onChange, value, error }: IInput, ref) => {
+    return (
+      <S.Column>
+        <S.Label data-testid="label" htmlFor={id}>
+          {label}
+        </S.Label>
+        <S.StyledInput
+          id={id}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          ref={ref}
+        />
+        <S.Error>{error}</S.Error>
+      </S.Column>
+    );
+  }
+);

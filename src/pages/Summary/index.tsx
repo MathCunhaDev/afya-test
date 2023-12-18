@@ -1,13 +1,14 @@
 import Success from "~common/assets/svgs/success.svg";
 import { usePaymentConfirmationContext } from "~hooks/usePaymentConfirmationContext";
 import { theme } from "~common/styles/theme";
+import { useRef } from "react";
 import { Flex } from "antd";
 import * as Molecules from "~components/Molecules";
 import * as Atoms from "~components/Atoms";
 
 export const Summary = () => {
   const { paymentConfirmation } = usePaymentConfirmationContext();
-  console.log("aqui12", paymentConfirmation);
+  const confirmationRef = useRef<HTMLDivElement | null>(null);
 
   return (
     <>
@@ -28,6 +29,7 @@ export const Summary = () => {
             cpf={paymentConfirmation.cpf}
             email={paymentConfirmation.email}
             price={paymentConfirmation.price}
+            ref={confirmationRef}
           />
           <Flex align="center" vertical={true} gap={24}>
             <Atoms.Title level={4} weight="bold" size={"12px"}>

@@ -1,5 +1,5 @@
 import { IOption } from "~models/IPayment";
-import { ChangeEvent } from "react";
+import { ChangeEvent, forwardRef } from "react";
 import * as S from "./styles";
 
 interface ISelect {
@@ -11,25 +11,21 @@ interface ISelect {
   onChange: (value: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export const Select = ({
-  id,
-  options,
-  placeholder,
-  label,
-  error,
-  onChange,
-}: ISelect) => {
-  return (
-    <S.Column>
-      <S.Label htmlFor={id}>{label}</S.Label>
-      <S.StyledSelect
-        id={id}
-        placeholder={placeholder}
-        options={options}
-        onChange={onChange}
-        data-testid="select"
-      />
-      <S.Error>{error}</S.Error>
-    </S.Column>
-  );
-};
+export const Select = forwardRef<any, ISelect>(
+  ({ id, options, placeholder, label, error, onChange }: ISelect, ref) => {
+    return (
+      <S.Column>
+        <S.Label htmlFor={id}>{label}</S.Label>
+        <S.StyledSelect
+          id={id}
+          placeholder={placeholder}
+          options={options}
+          onChange={onChange}
+          data-testid="select"
+          ref={ref}
+        />
+        <S.Error>{error}</S.Error>
+      </S.Column>
+    );
+  }
+);

@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useRef } from "react";
 import { paymentFormItems } from "~constants/paymentFormItems";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,9 +9,12 @@ import * as Utils from "~common/utils/";
 import * as S from "./styles";
 
 export function PaymentForm({
-  options,
+  options = [],
   handleSubscription,
 }: Props.IPaymentForm) {
+  const inputRef = useRef(null);
+  const selectRef = useRef(null);
+
   const { control, handleSubmit, setValue } = useForm({
     resolver: zodResolver(validations),
   });
@@ -55,6 +58,7 @@ export function PaymentForm({
                   handleChange(event.target.value, item.id);
                 }}
                 error={fieldState.error?.message}
+                ref={inputRef}
               />
             )}
           />
@@ -76,6 +80,7 @@ export function PaymentForm({
                 handleChange(value, "installments");
               }}
               error={fieldState.error?.message}
+              ref={selectRef}
             />
           )}
         />

@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import help from "~common/assets/svgs/help.svg";
 import { IPaymentData } from "~models/IPayment";
 import { usePayment } from "./hooks";
@@ -13,6 +14,8 @@ export const Payment = () => {
     options,
     handleSubscription,
   } = usePayment();
+
+  const cardRef = useRef<HTMLDivElement>(null);
 
   return (
     <>
@@ -48,6 +51,7 @@ export const Payment = () => {
                   installmentType={payment.installmentType}
                   handleClick={paymentDispatch}
                   paymentType={paymentState.id}
+                  ref={cardRef}
                 />
               ))}
             </Flex>
