@@ -6,5 +6,5 @@ export const formatCreditCard = (value: string): string => {
     formattedValue += numericValue.substr(i, 4) + " ";
   }
 
-  return formattedValue.trim();
+  return formattedValue.trim().slice(0, 19);
 };

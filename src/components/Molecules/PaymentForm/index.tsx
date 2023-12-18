@@ -28,7 +28,7 @@ export function PaymentForm({
         setValue(name, Utils.formatValidate(value));
         break;
       case "cvv":
-        setValue(name, Utils.formatCreditCard(value));
+        setValue(name, Utils.formatCVV(value));
         break;
       case "cpf":
         setValue(name, Utils.formatCpf(value));
