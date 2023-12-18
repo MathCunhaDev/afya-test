@@ -25,8 +25,6 @@ export const usePayment = () => {
       label: (index + 1).toString(),
     }));
 
-    console.log("aqui 11", action);
-
     setOptions(newOptions);
     setPlanSelected(action);
 
@@ -48,7 +46,6 @@ export const usePayment = () => {
         const result: any = await postSubscription(data);
 
         if (result.status === 200) {
-          console.log("aqui 10", data, planSelected);
           setPaymentConfirmation({
             id: planSelected.id,
             installments: planSelected.installments,
