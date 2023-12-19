@@ -60,7 +60,7 @@ export const usePayment = () => {
       } catch (error) {
         console.log("Ocorreu um erro, tente novamente mais tarde:", error);
       } finally {
-        navigate("/summary");
+        navigate("/confirmation");
       }
     } else {
       console.log("Formulário inválido. Corrija os erros antes de enviar.");

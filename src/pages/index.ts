@@ -1,2 +1,2 @@
 export { Payment } from "./Payment";
-export { Summary } from "./Summary";
+export { Confirmation } from "./Confirmation";

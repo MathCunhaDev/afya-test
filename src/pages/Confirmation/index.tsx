@@ -6,7 +6,7 @@ import { Flex } from "antd";
 import * as Molecules from "~components/Molecules";
 import * as Atoms from "~components/Atoms";
 
-export const Summary = () => {
+export const Confirmation = () => {
   const { paymentConfirmation } = usePaymentConfirmationContext();
   const confirmationRef = useRef<HTMLDivElement | null>(null);
 
@@ -14,7 +14,7 @@ export const Summary = () => {
     <>
       <Molecules.Header />
       <Atoms.Container>
-        <Flex vertical={true} gap={60}>
+        <Flex vertical={true} gap={60} align="center">
           <Flex align="center" vertical={true} gap={12}>
             <img src={Success} alt="Icone de sucesso" />
             <Atoms.Title size={"20px"} weight="normal">

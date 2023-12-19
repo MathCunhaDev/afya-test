@@ -7,7 +7,7 @@ export const routes = createBrowserRouter([
     element: <Pages.Payment />,
   },
   {
-    path: "/summary",
-    element: <Pages.Summary />,
+    path: "/confirmation",
+    element: <Pages.Confirmation />,
   },
 ]);
