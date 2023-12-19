@@ -1,5 +1,6 @@
 import { ChangeEvent, useRef } from "react";
 import { paymentFormItems } from "~constants/paymentFormItems";
+import CardFlags from "~common/assets/images/card-flags.png";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { validations } from "./validations";
@@ -41,6 +42,17 @@ export function PaymentForm({
 
   return (
     <S.Wrapper>
+      <S.FormHeader>
+        <Atoms.Title size="20px" weight="normal" level={3}>
+          Estamos quase lá!
+        </Atoms.Title>
+        <Atoms.Text size="16px" weight="normal">
+          Insira seus dados de pagamento abaixo:
+        </Atoms.Text>
+        <S.ImageWrapper>
+          <img src={CardFlags} alt="Bandeiras dos cartões aceitos" />
+        </S.ImageWrapper>
+      </S.FormHeader>
       <S.Form onSubmit={handleSubmit(handleSubscription)}>
         {paymentFormItems.map((item: Props.IPaymentFormItem) => (
           <Controller

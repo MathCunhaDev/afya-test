@@ -19,7 +19,7 @@ export const Payment = () => {
 
   return (
     <>
-      <Molecules.Header />
+      <Molecules.Header handleClick={() => {}} />
       <Atoms.Container>
         <Flex
           justify={`${window.innerWidth < 768 ? "center" : "space-between"}`}

@@ -1,5 +1,6 @@
 import Success from "~common/assets/svgs/success.svg";
 import { usePaymentConfirmationContext } from "~hooks/usePaymentConfirmationContext";
+import { useNavigate } from "react-router-dom";
 import { theme } from "~common/styles/theme";
 import { useRef } from "react";
 import { Flex } from "antd";
@@ -7,12 +8,13 @@ import * as Molecules from "~components/Molecules";
 import * as Atoms from "~components/Atoms";
 
 export const Confirmation = () => {
+  const navigate = useNavigate();
   const { paymentConfirmation } = usePaymentConfirmationContext();
   const confirmationRef = useRef<HTMLDivElement | null>(null);
 
   return (
     <>
-      <Molecules.Header />
+      <Molecules.Header handleClick={() => navigate("/")} />
       <Atoms.Container>
         <Flex vertical={true} gap={60} align="center">
           <Flex align="center" vertical={true} gap={12}>

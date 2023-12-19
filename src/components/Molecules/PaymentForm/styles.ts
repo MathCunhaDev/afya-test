@@ -24,3 +24,15 @@ export const Form = styled.form`
     margin-top: 30px;
   }
 `;
+
+export const FormHeader = styled.section`
+  @media (max-width: 768px) {
+    margin-top: 30px;
+  }
+`;
+
+export const ImageWrapper = styled.section`
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+`;
