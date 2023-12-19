@@ -3,11 +3,11 @@ import * as Pages from "~pages";
 
 export const routes = createBrowserRouter([
   {
-    path: "/checkout/payment",
+    path: "/",
     element: <Pages.Payment />,
   },
   {
-    path: "/checkout/summary",
+    path: "/summary",
     element: <Pages.Summary />,
   },
 ]);
